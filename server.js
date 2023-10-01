@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads",express.static(path.join(__dirname, "uploads")));
 
 app.use(cors({
     origin: '*',
@@ -56,6 +56,8 @@ app.post("/api/assemble", (req, res) => {
 });
 
 
+
+
 // app.post("/api/upload", upload.single("chunk"), (req, res) => {
 //   try {
 //     const chunkData = req.file.buffer;
@@ -70,6 +72,7 @@ app.post("/api/assemble", (req, res) => {
 
 
 app.use('/',(req,res) => {
+    
     return res.send({'message': "Server is up and running"})
 })
 
